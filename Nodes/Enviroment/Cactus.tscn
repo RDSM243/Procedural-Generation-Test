@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Sprites/Enviroment/enviromentTrees.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Enviroment/tree.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 64, 32, 64 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10.9784, 16.0719 )
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 15.4875
+height = 12.5209
+
+[node name="cactus" type="StaticBody2D"]
+script = ExtResource( 2 )
+objName = "cactus"
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 16 )
+shape = SubResource( 2 )
+
+[node name="treeHitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="treeHitBox"]
+position = Vector2( -0.5, 16 )
+shape = SubResource( 3 )
+[connection signal="area_entered" from="treeHitBox" to="." method="_on_treeHitBox_area_entered"]

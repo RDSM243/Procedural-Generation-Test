@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/constructionArea.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/red_outline.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/GroundTiles/grass.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 96, 96, 32, 32 )
+
+[node name="TileSp" type="Sprite"]
+modulate = Color( 1, 1, 1, 0.705882 )
+texture = SubResource( 1 )
+script = ExtResource( 1 )
+
+[node name="red_outline" type="Sprite" parent="."]
+modulate = Color( 1, 0, 0, 1 )
+texture = ExtResource( 2 )

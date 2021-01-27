@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Interface/Console.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Interface/commandHandler.gd" type="Script" id=2]
+
+[node name="Console" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 330.0
+margin_right = -582.0
+margin_bottom = -8.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="commandHandler" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="input" type="LineEdit" parent="."]
+margin_top = 230.0
+margin_right = 420.0
+margin_bottom = 254.0
+placeholder_text = "Write _help to see the commands"
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="output" type="TextEdit" parent="."]
+margin_right = 420.0
+margin_bottom = 224.0
+focus_mode = 0
+text = "Debug Console"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="text_entered" from="input" to="." method="_on_input_text_entered"]

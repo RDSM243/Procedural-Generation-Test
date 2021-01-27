@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scenes/World.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Nodes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/UIManager.gd" type="Script" id=3]
+[ext_resource path="res://Nodes/Interface/Console.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Nodes/GroundTileSp.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Sprites/GroundTiles/grass.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/SkyManager.gd" type="Script" id=7]
+
+[sub_resource type="Animation" id=1]
+resource_name = "day_and_night"
+length = 1440.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 360, 575.4, 600, 720, 935.4, 960, 1115.4, 1140, 1440 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.509804, 0.556863, 0.576471, 1 ), Color( 0.803922, 0.803922, 0.803922, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.752941, 0.658824, 0.490196, 1 ), Color( 0.752941, 0.658824, 0.490196, 1 ), Color( 0.266667, 0.352941, 0.384314, 1 ), Color( 0.266667, 0.352941, 0.384314, 1 ), Color( 0.509804, 0.556863, 0.576471, 1 ) ]
+}
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 0.490196 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 6 )
+region = Rect2( 96, 96, 32, 32 )
+
+[node name="Game" type="Node2D"]
+
+[node name="World" parent="." instance=ExtResource( 1 )]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 527, 306 )
+
+[node name="SkyColor" type="CanvasModulate" parent="."]
+color = Color( 0.509804, 0.556863, 0.576471, 1 )
+script = ExtResource( 7 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SkyColor"]
+anims/day_and_night = SubResource( 1 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource( 3 )
+
+[node name="globalCamCK" type="CheckBox" parent="UI"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 34.0
+margin_bottom = 34.0
+custom_styles/focus = SubResource( 2 )
+text = "Global Cam"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Console" parent="UI" instance=ExtResource( 4 )]
+visible = false
+
+[node name="TileSpBG" type="Panel" parent="UI"]
+margin_left = 120.0
+margin_top = 2.0
+margin_right = 180.0
+margin_bottom = 62.0
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tileSp" type="Sprite" parent="UI/TileSpBG"]
+position = Vector2( 30, 30 )
+texture = SubResource( 4 )
+
+[node name="TileSp" parent="." instance=ExtResource( 5 )]

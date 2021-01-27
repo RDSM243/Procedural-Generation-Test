@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Themes/default_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/MainMenu/WorldContainer.gd" type="Script" id=2]
+
+[node name="WorldContainer" type="Panel"]
+margin_right = 154.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 154, 80 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WorldNameTxt" type="Label" parent="."]
+margin_left = 5.0
+margin_top = 20.0
+margin_right = 89.0
+margin_bottom = 34.0
+theme = ExtResource( 1 )
+text = "World Name"
+
+[node name="LoadBtn" type="Button" parent="."]
+margin_left = 5.0
+margin_top = 55.0
+margin_right = 55.0
+margin_bottom = 75.0
+theme = ExtResource( 1 )
+text = "Load"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DeleteBtn" type="Button" parent="."]
+margin_left = 90.0
+margin_top = 55.0
+margin_right = 149.0
+margin_bottom = 75.0
+theme = ExtResource( 1 )
+text = "Delete"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="LoadBtn" to="." method="_on_LoadBtn_pressed"]
+[connection signal="pressed" from="DeleteBtn" to="." method="_on_DeleteBtn_pressed"]

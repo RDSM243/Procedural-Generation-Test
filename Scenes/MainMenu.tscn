@@ -1,0 +1,210 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://Themes/default_theme.tres" type="Theme" id=2]
+[ext_resource path="res://Scripts/MainMenu/WorldListManager.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 0.588235 )
+
+[sub_resource type="Theme" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="gameTitle" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -192.0
+margin_top = 80.0
+margin_right = -3.00003
+margin_bottom = 94.0
+rect_scale = Vector2( 5, 5 )
+text = "Survival Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainOptionsBox" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -44.5
+margin_top = -34.0
+margin_right = 44.5
+margin_bottom = 34.0
+rect_scale = Vector2( 2, 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SinglePlayer" type="Button" parent="MainOptionsBox"]
+margin_right = 89.0
+margin_bottom = 20.0
+theme = ExtResource( 2 )
+custom_styles/focus = SubResource( 1 )
+text = "Singleplayer"
+
+[node name="Options" type="Button" parent="MainOptionsBox"]
+margin_top = 24.0
+margin_right = 89.0
+margin_bottom = 44.0
+theme = ExtResource( 2 )
+text = "Options"
+
+[node name="Exit" type="Button" parent="MainOptionsBox"]
+margin_top = 48.0
+margin_right = 89.0
+margin_bottom = 68.0
+theme = ExtResource( 2 )
+text = "Exit"
+
+[node name="WorldOptionsBox" type="Control" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -44.5
+margin_top = -100.0
+margin_right = 44.5
+margin_bottom = -32.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="WorldOptionsBox"]
+margin_left = -120.0
+margin_top = -10.0
+margin_right = 180.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 300, 100 )
+custom_styles/bg = SubResource( 2 )
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WorldOptionsBox/ScrollContainer"]
+margin_right = 300.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 300, 100 )
+custom_constants/separation = 5
+script = ExtResource( 3 )
+
+[node name="CreateWorld" type="Button" parent="WorldOptionsBox"]
+margin_left = -32.0
+margin_top = 120.0
+margin_right = 95.0
+margin_bottom = 140.0
+theme = ExtResource( 2 )
+text = "Create New World"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WorldOptionBack" type="Button" parent="WorldOptionsBox"]
+margin_left = -15.0
+margin_top = 145.0
+margin_right = 74.0
+margin_bottom = 165.0
+theme = ExtResource( 2 )
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WorldCreatorBox" type="Control" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -44.5
+margin_top = -100.0
+margin_right = 44.5
+margin_bottom = -32.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="ErrorMenssage" type="Label" parent="WorldCreatorBox"]
+visible = false
+margin_left = -67.0
+margin_top = -10.0
+margin_right = 114.0
+margin_bottom = 4.0
+theme = SubResource( 3 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "You Must Type a Valid Name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="WorldCreatorBox"]
+margin_left = -45.0
+margin_top = 10.0
+margin_right = 255.0
+margin_bottom = 110.0
+rect_min_size = Vector2( 300, 100 )
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WorldCreatorBox/ScrollContainer"]
+margin_right = 140.0
+margin_bottom = 56.0
+custom_constants/separation = 8
+
+[node name="WorldName" type="LineEdit" parent="WorldCreatorBox/ScrollContainer/VBoxContainer"]
+margin_right = 140.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 140, 0 )
+theme = ExtResource( 2 )
+custom_styles/focus = SubResource( 4 )
+placeholder_text = "World Name"
+
+[node name="WorldSeed" type="LineEdit" parent="WorldCreatorBox/ScrollContainer/VBoxContainer"]
+margin_top = 32.0
+margin_right = 140.0
+margin_bottom = 56.0
+theme = ExtResource( 2 )
+custom_styles/focus = SubResource( 5 )
+placeholder_text = "World Seed"
+
+[node name="Generate World" type="Button" parent="WorldCreatorBox"]
+margin_left = -32.0
+margin_top = 120.0
+margin_right = 77.0
+margin_bottom = 140.0
+theme = ExtResource( 2 )
+text = "GenerateWorld"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WorldCreatorBack2" type="Button" parent="WorldCreatorBox"]
+margin_top = 145.0
+margin_right = 42.0
+margin_bottom = 165.0
+theme = ExtResource( 2 )
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="MainOptionsBox/SinglePlayer" to="." method="_on_SinglePlayer_pressed"]
+[connection signal="pressed" from="MainOptionsBox/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="MainOptionsBox/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="pressed" from="WorldOptionsBox/CreateWorld" to="." method="_on_CreateWorld_pressed"]
+[connection signal="pressed" from="WorldOptionsBox/WorldOptionBack" to="." method="_on_WorldOptionBack_pressed"]
+[connection signal="pressed" from="WorldCreatorBox/Generate World" to="." method="_on_Generate_World_pressed"]
+[connection signal="pressed" from="WorldCreatorBox/WorldCreatorBack2" to="." method="_on_WorldCreatorBack_pressed"]

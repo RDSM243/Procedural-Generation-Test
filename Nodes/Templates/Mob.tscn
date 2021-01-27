@@ -1,0 +1,35 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Sprites/character_walk/character_walk4.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Templates/Mob.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/character_walk/character_walk1.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/character_walk/character_walk2.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/character_idle/character_idle2.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/character_walk/character_walk3.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/character_idle/character_idle1.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/character_idle/character_idle3.png" type="Texture" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 31.9388, 32.0667 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 5 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "walk",
+"speed": 8.0
+} ]
+
+[node name="Mob" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
