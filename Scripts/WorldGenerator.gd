@@ -60,16 +60,16 @@ func create_noise() -> void:
 func generate_index(tilePos, mainLayer, temperatureLayer, enviromentLayer) -> int:
 	if mainLayer < 0.1:
 		if temperatureLayer < -0.19:
-#			if enviromentLayer < -0.50:
-#				generate_enviroment('snow_tree',tiles.map_to_world(tilePos)+Vector2(16,-8))
+			if enviromentLayer < -0.50:
+				generate_enviroment('snow_tree',tiles.map_to_world(tilePos)+Vector2(16,-8))
 			return GameManager.TILES.snow
 		elif temperatureLayer < 0.13:
-#			if enviromentLayer < -0.45:
-#				generate_enviroment('tree',tiles.map_to_world(tilePos)+Vector2(16,-8))
+			if enviromentLayer < -0.45:
+				generate_enviroment('tree',tiles.map_to_world(tilePos)+Vector2(16,-8))
 			return GameManager.TILES.grass
 		else:
-#			if enviromentLayer < -0.54:
-#				generate_enviroment('cactus',tiles.map_to_world(tilePos)+Vector2(16,-8))
+			if enviromentLayer < -0.54:
+				generate_enviroment('cactus',tiles.map_to_world(tilePos)+Vector2(16,-8))
 			return GameManager.TILES.desert_sand
 	else:
 		return GameManager.TILES.water
@@ -118,33 +118,11 @@ func checkEnviromentGen(objPos:Vector2, enviroment_id:String):
 	var dataFile = File.new()
 	dataFile.open(str(GameManager.worldsFolderDir,"/",GameManager.worldName,".dat"), File.READ)
 	var EnviromentData = dataFile.get_var()['ChangedEnviromentObjects']
-	for SavedObj in EnviromentData:
-		if SavedObj[1] == tiles.world_to_map(objPos) && SavedObj[2] == "Dead":
-			return false
+	
+	if EnviromentData.has(tiles.world_to_map(objPos)):
+		return false
 	return true
 	pass
-
-#func saveUpdatedDataInfo(changedData,savedDataList=""):
-#	var dir = Directory.new()
-#	dir.open(GameManager.worldsFolderDir)
-#	if dir.file_exists(str(GameManager.worldName,".dat")):
-#		var dataFile = File.new()
-#		dataFile.open(str(GameManager.worldsFolderDir,"/",GameManager.worldName,".dat"), File.READ)
-#		var SavedData = dataFile.get_var()[savedDataList]
-#		#removendo informação da posição atual caso ela ja exista
-#		for data in SavedData:
-#			if data[1] == changedData[1]:
-#				SavedData.remove(SavedData.find(data))
-#		#adicionando nova informação na lista
-#		SavedData.append(changedData)
-#		dataFile.close()
-#
-#		#verificando qual tipo de array possui nova informação
-#		if savedDataList == "ChangedTiles":
-#			GameManager.saveWorldInfos(GameManager.worldName,GameManager.worldSeed,GameManager.playerNode.position,SavedData)
-#		elif savedDataList == "ChangedEnviromentObjects":
-#			GameManager.saveWorldInfos(GameManager.worldName,GameManager.worldSeed,GameManager.playerNode.position,[],SavedData)
-#	pass
 
 func saveUpdatedDataInfo(changedData,savedDataList=""):
 	var dir = Directory.new()

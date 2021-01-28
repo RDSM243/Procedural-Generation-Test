@@ -76,7 +76,7 @@ func createWorldFile():
 		"PlayerPosition" : Vector2(527,306),
 		"DayTime": 6,
 		"ChangedTiles": {},
-		"ChangedEnviromentObjects": []
+		"ChangedEnviromentObjects": {}
 	}
 	
 	data.open(str(GameManager.worldsFolderDir,"/",worldNameLine.text,".dat"),File.WRITE)
