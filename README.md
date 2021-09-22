@@ -1,2 +1,2 @@
 # Procedural Generation Test
-(GODOT) topdown 2d procedural generarion test
+(GODOT) topdown 2d procedural generation test
