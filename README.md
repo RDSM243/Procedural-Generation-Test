@@ -1,2 +1,2 @@
-# Survival-Game
-(GODOT GAME) topdown 2d survival game with procedural generarion
+# Procedural Generation Test
+(GODOT) topdown 2d procedural generarion test
